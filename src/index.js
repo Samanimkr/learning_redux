@@ -1,15 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './App';
 
-import { createStore } from 'redux';
+import { combineReducers, createStore } from 'redux';
+import { Provider } from 'react-redux';
 
-const store = createStore();
+import productsReducer from './reducers/products-reducer';
+import userReducer from './reducers/user-reducer';
 
-export class App extends React.Component {
-  render(){
-    return (
-      <h1>Learning Redux</h1>
-    )
-  }
-}
-ReactDOM.render(<App />, document.getElementById('root'));
+const allReducers = combineReducers({
+  products: productsReducer,
+  user: userReducer
+})
+
+const store = createStore(
+  allReducers,
+  {
+    products: [{name: "iPhone"}],
+    user: 'Michael'
+  },
+  window.devToolsExtension && window.devToolsExtension()
+);
+
+
+ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
