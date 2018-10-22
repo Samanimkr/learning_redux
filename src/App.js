@@ -2,7 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 class App extends React.Component {
+    handleClick = () => {
+        let id = this.props.posts.length;
+        this.props.deletePost(id);
+    }
     render(){
+        console.log(this.props); 
         const posts = this.props.posts;
         return (
             <div>
@@ -14,6 +19,7 @@ class App extends React.Component {
                         )
                     }) }
                 </ul>
+                <button onClick={this.handleClick.bind(this)}>Delete latest post</button>
             </div>
             
             
@@ -21,10 +27,16 @@ class App extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
     return {
         posts: state.posts
     }
 }
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        deletePost: (id) => { dispatch({type: 'DELETE_POST', id: id})}
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
