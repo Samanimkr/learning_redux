@@ -1,26 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 
-import { combineReducers, createStore } from 'redux';
-import { Provider } from 'react-redux';
-
-import productsReducer from './reducers/products-reducer';
-import userReducer from './reducers/user-reducer';
-
-const allReducers = combineReducers({
-  products: productsReducer,
-  user: userReducer
-})
-
-const store = createStore(
-  allReducers,
-  {
-    products: [{name: "iPhone"}],
-    user: 'Michael'
-  },
-  window.devToolsExtension && window.devToolsExtension()
-);
+import { createStore } from 'redux';
 
 
-ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
+const initState = {
+    todos: [],
+    posts: []
+}
+
+const myReducer(state = initState, action){
+    if (action.type == 'ADD_TODO'){
+        return {
+            todos: [...state.todos, action.todo]
+        }
+    }
+}
+
+const store = createStore(myReducer);
+
+const todoAction = { type: 'ADD_TODO', todo: 'buy milk' };
+
+store.dispatch(todoAction); 
