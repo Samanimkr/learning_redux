@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { deletePost } from './actions/postActions';
+import { AddForm } from "./components/AddForm";
 
 class App extends React.Component {
     handleClick = () => {
@@ -21,6 +22,7 @@ class App extends React.Component {
                     }) }
                 </ul>
                 <button onClick={this.handleClick.bind(this)}>Delete latest post</button>
+                <AddForm />
             </div>
             
             
