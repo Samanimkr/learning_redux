@@ -9,16 +9,29 @@ const initState = {
     posts: []
 }
 
-const myReducer(state = initState, action){
+function myReducer(state = initState, action){
     if (action.type == 'ADD_TODO'){
         return {
+            ...state,
             todos: [...state.todos, action.todo]
+        }
+    }
+    if (action.type == 'ADD_POST'){
+        return {
+            ...state,
+            posts: [...state.posts, action.post]
         }
     }
 }
 
 const store = createStore(myReducer);
 
-const todoAction = { type: 'ADD_TODO', todo: 'buy milk' };
+store.subscribe(() => {
+    console.log('state updated');
+    console.log(store.getState());
+})
 
-store.dispatch(todoAction); 
+
+store.dispatch({ type: 'ADD_TODO', todo: 'buy milk ' });
+store.dispatch({ type: 'ADD_TODO', todo: 'sleep some more' });
+store.dispatch({ type: 'ADD_POST', post: 'Best post ever' });
