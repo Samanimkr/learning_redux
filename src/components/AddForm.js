@@ -1,6 +1,8 @@
-import React, { Component } from "react";
+import React from 'react';
+import { connect } from 'react-redux';
+import { newPost } from '../actions/postActions';
 
-export class AddForm extends Component {
+class AddForm extends React.Component {
     constructor(props){
         super(props);
 
@@ -14,7 +16,6 @@ export class AddForm extends Component {
     }
 
     handleChange(e){
-        var name = e.target.name;
         if (e.target.name === 'title') {
             this.setState({postTitle: e.target.value});
         } else if (e.target.name === 'body'){
@@ -22,14 +23,14 @@ export class AddForm extends Component {
         }
     }
 
-    handleSubmit(e){
-        e.preventDefault();
-        console.log(e.target.value);
+    handleSubmit(event){
+        event.preventDefault();
+        this.props.newPost(this.state);
     }
 
     render(){
         return (
-            <form onSubmit={this.handleSubmit}>
+            <div>
                 <h3>New Post</h3>
                 <ul>
                     <li>
@@ -41,9 +42,23 @@ export class AddForm extends Component {
                         <input type='text' name='body' onChange={this.handleChange}/>
                     </li>
                 </ul>
-               
-
-            </form>
+                
+                <input type="submit" value="Add post" />
+            </div>
         )
     }
 }
+
+const mapStateToProps = (state, ownProps) => {
+    return {
+        posts: state.posts
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        newPost: (data) => { dispatch(newPost(data)) }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddForm);
