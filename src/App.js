@@ -13,7 +13,7 @@ class App extends React.Component {
         this.props.deletePost(id);
     }
     
-    render(){
+    render() {
         const posts = this.props.posts;
         return (
             <div>
@@ -26,9 +26,10 @@ class App extends React.Component {
                     }) }
                 </ul>
                 <button onClick={this.handleClick.bind(this)}>Delete latest post</button>
-                <AddForm />
+                <AddForm
+                    submitForm={(data) => this.props.newPost(data)}
+                />
             </div>
-            
             
         )
     }
@@ -42,7 +43,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        deletePost: (id) => { dispatch(deletePost(id))}
+        deletePost: (id) => dispatch(deletePost(id))
     }
 }
 

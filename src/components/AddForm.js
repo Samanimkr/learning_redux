@@ -25,7 +25,10 @@ class AddForm extends React.Component {
 
     handleSubmit(event){
         event.preventDefault();
-        this.props.newPost(this.state);
+        this.props.newPost({
+            title: this.state.postTitle,
+            body: this.state.postBody,
+        });
     }
 
     render(){
@@ -43,7 +46,7 @@ class AddForm extends React.Component {
                     </li>
                 </ul>
                 
-                <input type="submit" value="Add post" onSubmit={this.handleSubmit}/>
+                <input type="submit" value="Add post" onClick={this.handleSubmit}/>
             </div>
         )
     }
@@ -57,7 +60,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        newPost: (data) => { dispatch(newPost(data)) }
+        newPost: (data) => dispatch(newPost(data)),
     }
 }
 

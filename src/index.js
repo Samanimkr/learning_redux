@@ -5,20 +5,23 @@ import App from './App';
 // Redux
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import logger from 'redux-logger'
 import createSagaMiddleware from 'redux-saga';
 
 // Sagas
-import { helloSaga } from "./sagas";
+import rootSaga from "./sagas/sagas";
 
 // Reducers
 import rootReducer from './reducers/rootReducer';
 
 const sagaMiddleware = createSagaMiddleware()
-const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
+const store = createStore(rootReducer, applyMiddleware(sagaMiddleware, logger));
 
-sagaMiddleware.run(helloSaga);
-
+sagaMiddleware.run(rootSaga);
 const action = type => store.dispatch({type});
 
-
-ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
+ReactDOM.render(
+    <Provider store={store}>
+        <App action={(type) => action(type)} />
+    </Provider>, document.getElementById('root')
+);

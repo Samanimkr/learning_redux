@@ -7,9 +7,8 @@ const initState = {
 }
 
 const rootReducer = (state = initState, action) => {
-    console.log(action);
     if (action.type === "DELETE_POST"){
-        let newPosts = state.posts.filter(post => {
+        const newPosts = state.posts.filter(post => {
             return action.id !== post.id
         })
         return {
@@ -22,10 +21,9 @@ const rootReducer = (state = initState, action) => {
         ];
         newPosts.push({
             id: state.posts.length+1,
-            title: action.data.postTitle,
-            body: action.data.postBody
+            title: action.data.title,
+            body: action.data.body
         })
-        
         return {
             ...state,
             posts: newPosts
