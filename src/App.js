@@ -6,6 +6,7 @@ import { deletePost } from './actions/postActions';
 
 // Components
 import AddForm from "./components/AddForm";
+import Counter from "./components/Counter";
 
 class App extends React.Component {
     handleClick = () => {
@@ -29,6 +30,7 @@ class App extends React.Component {
                 <AddForm
                     submitForm={(data) => this.props.newPost(data)}
                 />
+                <Counter />
             </div>
             
         )

@@ -3,7 +3,8 @@ const initState = {
         {id: 1, title: 'title 1', body: 'body of text 1'},
         {id: 2, title: 'title 2', body: 'body of text 2'},
         {id: 3, title: 'title 3', body: 'body of text 3'},
-    ]
+    ],
+    counter: 0,
 }
 
 const rootReducer = (state = initState, action) => {
@@ -27,6 +28,16 @@ const rootReducer = (state = initState, action) => {
         return {
             ...state,
             posts: newPosts
+        }
+    } else if (action.type === "INCREMENT_COUNTER") {
+        return {
+            ...state,
+            counter: state.counter + 1,
+        }
+    } else if (action.type === "DECREMENT_COUNTER") {
+        return {
+            ...state,
+            counter: state.counter - 1,
         }
     }
     return state;

@@ -54,7 +54,8 @@ class AddForm extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        posts: state.posts
+        counter: state.counter,
+
     }
 }
 
