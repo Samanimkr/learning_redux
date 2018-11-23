@@ -43,7 +43,7 @@ class AddForm extends React.Component {
                     </li>
                 </ul>
                 
-                <input type="submit" value="Add post" />
+                <input type="submit" value="Add post" onSubmit={this.handleSubmit}/>
             </div>
         )
     }
