@@ -48,7 +48,7 @@ class AddForm extends React.Component {
                         <ControlLabel>Post Title:</ControlLabel>
                         <FormControl
                             type="text"
-                            namee="title"
+                            name="title"
                             value={this.state.postTitle}
                             placeholder="Enter title..."
                             onChange={this.handleChange}
