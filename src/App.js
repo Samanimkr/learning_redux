@@ -7,6 +7,7 @@ import { deletePost } from './actions/postActions';
 // Components
 import AddForm from "./components/AddForm";
 import Counter from "./components/Counter";
+import ApiComponent from "./components/ApiComponent";
 
 import {
     Button,
@@ -44,6 +45,7 @@ class App extends React.Component {
                 <AddForm
                     submitForm={(data) => this.props.newPost(data)}
                 />
+                <ApiComponent />
                 <Counter />
             </div>
             
@@ -53,9 +55,9 @@ class App extends React.Component {
 
 const styles = {
     container: {
-        backgroundColor: '#f3f3f3',
+        backgroundColor: '#f7fafa',
         padding: '20px',
-        width: '40%',
+        width: '50%',
         margin: '10px auto',
     },
 }

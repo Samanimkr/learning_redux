@@ -4,6 +4,7 @@ const initState = {
         {id: 2, title: 'Title 2', body: 'Another random bit of text'},
     ],
     counter: 0,
+    planet: 'earth'
 }
 
 const rootReducer = (state = initState, action) => {
@@ -27,6 +28,11 @@ const rootReducer = (state = initState, action) => {
         return {
             ...state,
             posts: newPosts
+        }
+    } else if (action.type === 'NASA_IMAGES_SUCCESS') {
+        return {
+            ...state,
+            images: action.images
         }
     } else if (action.type === "INCREMENT_COUNTER") {
         return {

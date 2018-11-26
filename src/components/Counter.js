@@ -41,9 +41,9 @@ class Counter extends Component {
 
 const styles = {
     container: {
-        backgroundColor: '#f3f3f3',
+        backgroundColor: '#eff3f4',
         padding: '20px',
-        width: '40%',
+        width: '50%',
         margin: '10px auto',
     },
     decrementButtons: {

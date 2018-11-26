@@ -1,13 +1,18 @@
 export const deletePost = (id) => {
     return {
         type: 'DELETE_POST_REQUEST',
-        id
+        id,
     }
 }
 
 export const newPost = data => ({
     type: 'NEW_POST_REQUEST',
-    data
+    data,
+})
+
+export const requestNasaImages = planet => ({
+    type: 'NASA_IMAGES_REQUESTED',
+    planet,
 })
 
 const increment = () => ({
