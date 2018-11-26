@@ -13,26 +13,14 @@ class Counter extends Component {
     render() {
         return (
             <div style={styles.container}>
-                <h2>Counter: {this.props.counter}</h2>
+                <h3>Counter: {this.props.counter}</h3>
 
-                <ButtonGroup>
-                    <Button bsSize="small" onClick={this.props.increment}>
-                        INCREMENT <Badge>instantly</Badge>
-                    </Button>
-                    <Button bsSize="small" onClick={this.props.incrementAsync}>
-                        INCREMENT ASYNC <Badge>1 second</Badge>
-                    </Button>
-                </ButtonGroup>
+                <Button style={styles.button} onClick={this.props.increment}>INCREMENT</Button>
+                <Button style={styles.button} onClick={this.props.incrementAsync}>INCREMENT ASYNC</Button>
 
                 <div style={styles.decrementButtons}>
-                    <ButtonGroup>
-                        <Button bsSize="small" onClick={this.props.decrement}>
-                            DECREMENT <Badge>instantly</Badge>
-                        </Button>
-                        <Button bsSize="small" onClick={this.props.decrementAsync}>
-                            DECREMENT ASYNC <Badge>1 second</Badge>
-                        </Button>
-                    </ButtonGroup>
+                    <Button style={styles.button} onClick={this.props.decrement}>DECREMENT</Button>
+                    <Button style={styles.button} onClick={this.props.decrementAsync}>DECREMENT ASYNC</Button>
                 </div>
             </div>
         )
@@ -41,13 +29,14 @@ class Counter extends Component {
 
 const styles = {
     container: {
-        backgroundColor: '#eff3f4',
+        backgroundColor: '#EFF3F4',
         padding: '20px',
-        width: '50%',
+        width: '55%',
         margin: '10px auto',
     },
-    decrementButtons: {
-        margin: '10px 0',
+    button: {
+        margin: '0 5px 10px 0',
+        width: '30%'
     }
 }
 

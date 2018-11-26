@@ -11,6 +11,11 @@ import {
 import { requestNasaImages } from "../actions/postActions";
 
 class ApiComponent extends Component {
+    componentDidMount() {
+        this.props.requestNasaImages({
+            planetName: this.state.planetName,
+        });
+    }
     constructor(props){
         super(props);
 
@@ -35,11 +40,13 @@ class ApiComponent extends Component {
     render() {
         return (
             <div style={styles.container}>
+                <h3>API Calls</h3>
                 <FormGroup style={styles.formContainer}>
                     <FormControl
                         style={styles.input}
                         type="text"
                         value={this.state.postTitle}
+                        defaultValue='Earth'
                         placeholder="Enter Planet Name"
                         onChange={this.handleChange}
                     />
@@ -65,7 +72,7 @@ const styles = {
     container: {
         backgroundColor: '#f7fafa',
         padding: '20px',
-        width: '50%',
+        width: '55%',
         margin: '10px auto',
     },
     imagesContainer: {

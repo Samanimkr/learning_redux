@@ -13,7 +13,8 @@ import {
     Button,
     FormGroup,
     ControlLabel,
-    FormControl
+    FormControl,
+    PageHeader
 } from 'react-bootstrap';
 
 class App extends React.Component {
@@ -26,8 +27,9 @@ class App extends React.Component {
         const posts = this.props.posts;
         return (
             <div>
+                <PageHeader style={{paddingLeft: '15px'}}>Learning Redux <small>& Sagas</small></PageHeader>;
                 <div style={styles.container}>
-                    <h1>POSTS:</h1>
+                    <h3>Posts</h3>
                     <ul>
                         { posts.map(post => {
                             return (
@@ -57,7 +59,7 @@ const styles = {
     container: {
         backgroundColor: '#f7fafa',
         padding: '20px',
-        width: '50%',
+        width: '55%',
         margin: '10px auto',
     },
 }

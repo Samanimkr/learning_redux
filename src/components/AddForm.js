@@ -74,9 +74,9 @@ class AddForm extends React.Component {
 
 const styles = {
     container: {
-        backgroundColor: '#eff3f4',
+        backgroundColor: '#EFF3F4',
         padding: '20px',
-        width: '50%',
+        width: '55%',
         margin: '10px auto',
     }
 }
