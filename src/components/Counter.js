@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 
 import {
     Button,
-    ButtonGroup,
-    Badge,
 } from 'react-bootstrap';
 
 import { counterActions } from "../actions/postActions";

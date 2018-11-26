@@ -27,7 +27,7 @@ class App extends React.Component {
         const posts = this.props.posts;
         return (
             <div>
-                <PageHeader style={{paddingLeft: '15px'}}>Learning Redux <small>& Sagas</small></PageHeader>;
+                <PageHeader style={{paddingLeft: '15px'}}>Learning Redux <small>& Sagas and Persist</small></PageHeader>;
                 <div style={styles.container}>
                     <h3>Posts</h3>
                     <ul>
