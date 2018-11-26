@@ -9,7 +9,7 @@ import logger from 'redux-logger'
 import createSagaMiddleware from 'redux-saga';
 
 // Sagas
-import rootSaga from "./sagas/sagas";
+import rootSaga from "./sagas";
 
 // Reducers
 import rootReducer from './reducers/rootReducer';

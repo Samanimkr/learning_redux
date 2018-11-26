@@ -8,6 +8,13 @@ import { deletePost } from './actions/postActions';
 import AddForm from "./components/AddForm";
 import Counter from "./components/Counter";
 
+import {
+    Button,
+    FormGroup,
+    ControlLabel,
+    FormControl
+} from 'react-bootstrap';
+
 class App extends React.Component {
     handleClick = () => {
         let id = this.props.posts.length;
@@ -18,15 +25,22 @@ class App extends React.Component {
         const posts = this.props.posts;
         return (
             <div>
-                <h1>POSTS:</h1>
-                <ul>
-                    { posts.map(post => {
-                        return (
-                            <li key={post.id}>Title: '{post.title}', Body: '{post.body}'</li>
-                        )
-                    }) }
-                </ul>
-                <button onClick={this.handleClick.bind(this)}>Delete latest post</button>
+                <div style={styles.container}>
+                    <h1>POSTS:</h1>
+                    <ul>
+                        { posts.map(post => {
+                            return (
+                                <FormGroup key={post.id}>
+                                    <ControlLabel>{post.title}</ControlLabel>
+                                    <FormControl.Static>{post.body}</FormControl.Static>
+                                </FormGroup>
+                               
+                            )
+                        }) }
+                    </ul>
+                    <Button onClick={this.handleClick.bind(this)}>Delete latest post</Button>
+                </div>
+                
                 <AddForm
                     submitForm={(data) => this.props.newPost(data)}
                 />
@@ -35,6 +49,15 @@ class App extends React.Component {
             
         )
     }
+}
+
+const styles = {
+    container: {
+        backgroundColor: '#f3f3f3',
+        padding: '20px',
+        width: '40%',
+        margin: '10px auto',
+    },
 }
 
 const mapStateToProps = (state, ownProps) => {

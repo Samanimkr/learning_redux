@@ -2,6 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { newPost } from '../actions/postActions';
 
+import {
+    Button,
+    FormGroup,
+    FormControl,
+    ControlLabel,
+    Form,
+} from 'react-bootstrap';
+
 class AddForm extends React.Component {
     constructor(props){
         super(props);
@@ -33,22 +41,43 @@ class AddForm extends React.Component {
 
     render(){
         return (
-            <div>
+            <div style={styles.container}>
                 <h3>New Post</h3>
-                <ul>
-                    <li>
-                        <label>Title:</label>
-                        <input type='text' name='title' onChange={this.handleChange}/>
-                    </li>
-                    <li>
-                        <label>Body:</label>
-                        <input type='text' name='body' onChange={this.handleChange}/>
-                    </li>
-                </ul>
+                <Form>
+                    <FormGroup>
+                        <ControlLabel>Post Title:</ControlLabel>
+                        <FormControl
+                            type="text"
+                            namee="title"
+                            value={this.state.postTitle}
+                            placeholder="Enter title..."
+                            onChange={this.handleChange}
+                        />
+                    </FormGroup>
+                    <FormGroup>
+                        <ControlLabel>Post Body:</ControlLabel>
+                        <FormControl
+                            componentClass="textarea"
+                            placeholder="Enter body text..."
+                            name="body"
+                            value={this.state.postBody}
+                            onChange={this.handleChange}
+                        />
+                    </FormGroup>
+                    <Button onClick={this.handleSubmit}>ADD POST</Button>
+                </Form>
                 
-                <input type="submit" value="Add post" onClick={this.handleSubmit}/>
             </div>
         )
+    }
+}
+
+const styles = {
+    container: {
+        backgroundColor: '#ecf0f1',
+        padding: '20px',
+        width: '40%',
+        margin: '10px auto',
     }
 }
 

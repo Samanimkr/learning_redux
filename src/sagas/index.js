@@ -1,7 +1,3 @@
-import {
-    rootSaga,
-} from './sagas';
+import rootSaga from './sagas';
 
-export default {
-    rootSaga,
-}
+export default rootSaga;

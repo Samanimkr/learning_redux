@@ -38,6 +38,7 @@ function* watchDecrement() {
     yield takeEvery('DECREMENT_COUNTER_ASYNC', decrementSaga);
 }
 
+
 export default function* rootSaga() {
     yield all([
         watchDeletePost(),
