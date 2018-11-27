@@ -4,11 +4,13 @@ const initState = {
         {id: 2, title: 'Title 2', body: 'Another random bit of text'},
     ],
     counter: 0,
-    planet: 'earth'
+    planet: 'earth',
+    showCongratulations: false,
+    loggedIn: false,
 }
 
 const rootReducer = (state = initState, action) => {
-    if (action.type === "DELETE_POST"){
+    if (action.type === 'DELETE_POST'){
         const newPosts = state.posts.filter(post => {
             return action.id !== post.id
         })
@@ -16,7 +18,7 @@ const rootReducer = (state = initState, action) => {
             ...state,
             posts: newPosts
         }
-    } else if (action.type === "NEW_POST") {
+    } else if (action.type === 'NEW_POST') {
         const newPosts = [
             ...state.posts,
         ];
@@ -29,22 +31,38 @@ const rootReducer = (state = initState, action) => {
             ...state,
             posts: newPosts
         }
+    } else if (action.type === 'SHOW_CONGRATULATIONS') {
+        return {
+            ...state,
+            showCongratulations: true,
+        }
     } else if (action.type === 'NASA_IMAGES_SUCCESS') {
         return {
             ...state,
             images: action.images
         }
-    } else if (action.type === "INCREMENT_COUNTER") {
+    } else if (action.type === 'INCREMENT_COUNTER') {
         return {
             ...state,
             counter: state.counter + 1,
         }
-    } else if (action.type === "DECREMENT_COUNTER") {
+    } else if (action.type === 'DECREMENT_COUNTER') {
         return {
             ...state,
             counter: state.counter - 1,
         }
+    } else if (action.type === 'LOGIN_SUCCESS') {
+        return {
+            ...state,
+            loggedIn: true,
+        }
+    } else if (action.type === 'LOGOUT') {
+        return {
+            ...state,
+            loggedIn: false,
+        }
     }
+
     return state;
 }
 

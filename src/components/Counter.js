@@ -5,7 +5,7 @@ import {
     Button,
 } from 'react-bootstrap';
 
-import { counterActions } from "../actions/postActions";
+import { counterActions } from '../actions/counterActions';
 
 class Counter extends Component {
     render() {

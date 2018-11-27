@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { delay } from 'redux-saga'
-import { put, takeEvery, all, call } from 'redux-saga/effects'
+import { put, takeEvery, all, call, take, fork } from 'redux-saga/effects'
 
 // API Call
 function fetchImages(planet) {
@@ -36,9 +36,9 @@ function* callNasaApi(data) {
             });
         }
 
-        yield put({type: "NASA_IMAGES_SUCCESS", images: [...planet_images]})
+        yield put({type: 'NASA_IMAGES_SUCCESS', images: [...planet_images]})
      } catch (error) {
-        yield put({type: "NASA_IMAGES_FAILED", error})
+        yield put({type: 'NASA_IMAGES_FAILED', error})
      }
 }
 
@@ -52,6 +52,18 @@ function* decrementSaga() {
     yield put({type: 'DECREMENT_COUNTER'});
 }
 
+function* authorize(password) {
+    try {
+        if(password === 'Qwertyu') {
+            yield put({type: 'LOGIN_SUCCESS'});
+        } else {
+            throw new Error('Incorrect password!');
+        }
+    } catch(error) {
+        yield put({type: 'LOGIN_FAILED', error});
+    }
+}
+
 
 // Watches for the Sagas
 function* watchNewPost() {
@@ -62,8 +74,15 @@ function* watchDeletePost() {
     yield takeEvery('DELETE_POST_REQUEST', deletePostSaga);
 }
 
+function* watchFirstThreePosts() {
+    for (let i=0; i<3; i += 1) {
+        yield take('NEW_POST_REQUEST');
+    }
+    yield put({type: 'SHOW_CONGRATULATIONS'})
+}
+
 function * watchNasaApi() {
-    yield takeEvery('NASA_IMAGES_REQUESTED', callNasaApi);
+    yield takeEvery('NASA_IMAGES_REQUEST', callNasaApi);
 }
 
 function* watchIncrement() {
@@ -74,12 +93,25 @@ function* watchDecrement() {
     yield takeEvery('DECREMENT_COUNTER_ASYNC', decrementSaga);
 }
 
+function* loginFlow() {
+    while (true) {
+        const { data } = yield take('LOGIN_REQUEST');
+        const { password } = data;
+
+        yield fork(authorize, password);
+        yield take(['LOGOUT_REQUEST', 'LOGOUT_ERROR']);
+        yield put({type: 'LOGOUT'});
+    }
+}
+
 
 export default function* rootSaga() {
     yield all([
         watchDeletePost(),
         watchNewPost(),
+        watchFirstThreePosts(),
         watchNasaApi(),
+        loginFlow(),
         watchIncrement(),
         watchDecrement(),
     ])

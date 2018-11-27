@@ -14,7 +14,7 @@ import storage from 'redux-persist/lib/storage'
 import { PersistGate } from 'redux-persist/integration/react'
 
 // Sagas
-import rootSaga from "./sagas";
+import rootSaga from './sagas';
 
 // Reducers
 import rootReducer from './reducers/rootReducer';
@@ -23,6 +23,7 @@ import rootReducer from './reducers/rootReducer';
 const persistConfig = {
     key: 'root',
     storage,
+    blacklist: ['showCongratulations', 'posts', 'loggedIn']
 }
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 const sagaMiddleware = createSagaMiddleware()

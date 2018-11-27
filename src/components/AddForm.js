@@ -47,19 +47,19 @@ class AddForm extends React.Component {
                     <FormGroup>
                         <ControlLabel>Post Title:</ControlLabel>
                         <FormControl
-                            type="text"
-                            name="title"
+                            type='text'
+                            name='title'
                             value={this.state.postTitle}
-                            placeholder="Enter title..."
+                            placeholder='Enter title...'
                             onChange={this.handleChange}
                         />
                     </FormGroup>
                     <FormGroup>
                         <ControlLabel>Post Body:</ControlLabel>
                         <FormControl
-                            componentClass="textarea"
-                            placeholder="Enter body text..."
-                            name="body"
+                            componentClass='textarea'
+                            placeholder='Enter body text...'
+                            name='body'
                             value={this.state.postBody}
                             onChange={this.handleChange}
                         />

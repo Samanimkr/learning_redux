@@ -8,7 +8,7 @@ import {
     FormGroup
 } from 'react-bootstrap';
 
-import { requestNasaImages } from "../actions/postActions";
+import { requestNasaImages } from '../actions/apiActions';
 
 class ApiComponent extends Component {
     componentDidMount() {
@@ -44,10 +44,10 @@ class ApiComponent extends Component {
                 <FormGroup style={styles.formContainer}>
                     <FormControl
                         style={styles.input}
-                        type="text"
+                        type='text'
                         value={this.state.postTitle}
                         defaultValue='Earth'
-                        placeholder="Enter Planet Name"
+                        placeholder='Enter Planet Name'
                         onChange={this.handleChange}
                     />
                     <Button style={styles.button} onClick={this.handleSubmit}>Search Nasa API</Button>
