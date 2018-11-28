@@ -99,7 +99,7 @@ function* loginFlow() {
         const { password } = data;
 
         yield fork(authorize, password);
-        yield take(['LOGOUT_REQUEST', 'LOGOUT_ERROR']);
+        yield take(['LOGOUT_REQUEST', 'LOGIN_FAILED']);
         yield put({type: 'LOGOUT'});
     }
 }

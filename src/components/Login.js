@@ -53,19 +53,11 @@ class Login extends Component {
             }
         }
         
-        const renderButton = () => {
+        const renderForm = () => {
             if (this.props.loggedIn) {
                 return <Button onClick={(e) => this.handleSubmit('logout', e)}>Logout</Button>;
             } else {
-                return <Button onClick={(e) => this.handleSubmit('login', e)}>Login</Button>;
-            }
-        }
-
-        return (
-            <div style={styles.container}>
-                <h3>Login/Logout</h3>
-                { renderStatus() }
-                <Form>
+                return (
                     <FormGroup style={{margin: '15px 0'}}>
                         <ControlLabel>Password:</ControlLabel>
                         <FormControl
@@ -76,9 +68,18 @@ class Login extends Component {
                             onChange={this.handleChange}
                             style={{margin: '8px 0'}}
                         />
-
-                        { renderButton() }
+                        <Button onClick={(e) => this.handleSubmit('login', e)}>Login</Button>
                     </FormGroup>
+                );
+            }
+        }
+
+        return (
+            <div style={styles.container}>
+                <h3>Login/Logout</h3>
+                { renderStatus() }
+                <Form>
+                    { renderForm() }
                 </Form>
                 
             </div>
