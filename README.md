@@ -5,11 +5,12 @@ This is a small project I did to learn redux
 - React JS
 - Redux
 - React-Redux
-- Thunk
+- Redux Sagas
 
 # Installation
 ```sh
-$ cd learning-redux
+$ git clone https://github.com/Samanimkr/learning_redux.git
+$ cd learning_redux
 $ npm install
 $ npm start
 ```
