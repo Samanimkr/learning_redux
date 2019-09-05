@@ -23,7 +23,7 @@ import rootReducer from './reducers/rootReducer';
 const persistConfig = {
     key: 'root',
     storage,
-    blacklist: ['showCongratulations', 'posts', 'loggedIn']
+    blacklist: ['showCongratulations', 'posts', 'loggedIn', 'loginFailed']
 }
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 const sagaMiddleware = createSagaMiddleware()

@@ -58,17 +58,22 @@ class Login extends Component {
                 return <Button onClick={(e) => this.handleSubmit('logout', e)}>Logout</Button>;
             } else {
                 return (
-                    <FormGroup style={{margin: '15px 0'}}>
-                        <ControlLabel>Password:</ControlLabel>
+                    <FormGroup validationState={this.props.loginFailed ? 'error' : 'null'} style={{margin: '15px 0'}}>
+                        <ControlLabel>Password <small>(Qwertyu):</small></ControlLabel>
                         <FormControl
                             type='password'
                             name='password'
                             placeholder='Enter password...'
+                            autoComplete='current-password'
                             value={this.state.password}
                             onChange={this.handleChange}
                             style={{margin: '8px 0'}}
                         />
-                        <Button onClick={(e) => this.handleSubmit('login', e)}>Login</Button>
+                        <Button
+                            type='submit'
+                            onClick={(e) => this.handleSubmit('login', e)}>
+                            Login
+                        </Button>
                     </FormGroup>
                 );
             }
@@ -104,7 +109,8 @@ const styles = {
 
 const mapStateToProps = state => {
     return {
-        loggedIn: state.loggedIn
+        loggedIn: state.loggedIn,
+        loginFailed: state.loginFailed,
     }
 }
 

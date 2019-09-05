@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { delay } from 'redux-saga'
-import { put, takeEvery, all, call, take, fork } from 'redux-saga/effects'
+import { put, takeEvery, all, call, take, fork, race } from 'redux-saga/effects'
 
 // API Call
 function fetchImages(planet) {
@@ -64,6 +64,10 @@ function* authorize(password) {
     }
 }
 
+function* runTask() {
+
+}
+
 
 // Watches for the Sagas
 function* watchNewPost() {
@@ -93,6 +97,22 @@ function* watchDecrement() {
     yield takeEvery('DECREMENT_COUNTER_ASYNC', decrementSaga);
 }
 
+function* watchStartTask() {
+    while (true) {
+        yield take('START_TASK');
+        const { task, cancel } = yield race({
+            task: call(runTask),
+            cancel: take('STOP_TASK')
+        })
+
+        if (task) {
+            yield put({type: 'TASK_FINISHED'})
+        } else if (cancel) {
+            yield put({type: 'TASK_CANCELLED'})
+        }
+    }
+}
+
 function* loginFlow() {
     while (true) {
         const { data } = yield take('LOGIN_REQUEST');
@@ -114,5 +134,6 @@ export default function* rootSaga() {
         loginFlow(),
         watchIncrement(),
         watchDecrement(),
+        watchStartTask()
     ])
   }

@@ -7,6 +7,8 @@ const initState = {
     planet: 'earth',
     showCongratulations: false,
     loggedIn: false,
+    loginFailed: false,
+    isRunningTask: false,
 }
 
 const rootReducer = (state = initState, action) => {
@@ -55,14 +57,33 @@ const rootReducer = (state = initState, action) => {
         return {
             ...state,
             loggedIn: true,
+            loginFailed: false,
         }
     } else if (action.type === 'LOGOUT') {
         return {
             ...state,
             loggedIn: false,
         }
+    } else if (action.type === 'LOGIN_FAILED') {
+        return {
+            ...state,
+            loginFailed: true,
+        }
+    } else if (action.type === 'START_TASK') {
+        return {
+            ...state,
+            isRunningTask: true
+        }
+    } else if (action.type === 'TASK_CANCELLED') {
+        return {
+            ...state,
+            isRunningTask: false
+        }
+    } else if (action.type === 'TASK_FINISHED') {
+        return {
+            ...state,
+        }
     }
-
     return state;
 }
 

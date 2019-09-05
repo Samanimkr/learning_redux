@@ -9,6 +9,7 @@ import AddForm from './components/AddForm';
 import Counter from './components/Counter';
 import ApiComponent from './components/ApiComponent';
 import Login from './components/Login';
+import CancelTask from './components/CancelTask';
 
 import {
     Button,
@@ -56,6 +57,7 @@ class App extends React.Component {
                 <ApiComponent />
                 <Counter />
                 <Login />
+                <CancelTask />
             </div>
             
         )
